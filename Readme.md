@@ -5,7 +5,7 @@ This project demonstrates a microservices architecture with two backend services
 ## Architecture
 
 ```
-Internet → AWS EC2 → Nginx (Port 8080) → Service 1 (Go) | Service 2 (Python)
+Github → AWS EC2 → Nginx (Port 8080) → Service 1 (Go) | Service 2 (Python)
 ```
 
 - **Nginx**: Reverse proxy routing requests to backend services
@@ -40,21 +40,32 @@ Internet → AWS EC2 → Nginx (Port 8080) → Service 1 (Go) | Service 2 (Pytho
 docker-compose up --build
 ```
 
-3. **Access services locally via:**
+3. **Access services :**
 
+### Locally:
 - **Service 1 (Go):**
-
   - [http://localhost:8080/service1/ping](http://localhost:8080/service1/ping)
   - [http://localhost:8080/service1/hello](http://localhost:8080/service1/hello)
 
 - **Service 2 (Python):**
-
   - [http://localhost:8080/service2/ping](http://localhost:8080/service2/ping)
   - [http://localhost:8080/service2/hello](http://localhost:8080/service2/hello)
 
-- **Nginx Root endpoint:** [http://localhost:8080/](http://localhost:8080/)
-
+- **Root Endpoint:** [http://localhost:8080/](http://localhost:8080/) (Lists available services)
 - **Nginx Health Check:** [http://localhost:8080/health](http://localhost:8080/health)
+
+### On AWS EC2:
+- **Service 1 (Go):**
+  - [http://18.212.10.67:8080/service1/ping](http://18.212.10.67:8080/service1/ping)
+  - [http://18.212.10.67:8080/service1/hello](http://18.212.10.67:8080/service1/hello)
+
+- **Service 2 (Python):**
+  - [http://18.212.10.67:8080/service2/ping](http://18.212.10.67:8080/service2/ping)
+  - [http://18.212.10.67:8080/service2/hello](http://18.212.10.67:8080/service2/hello)
+
+- **Root Endpoint:** [http://18.212.10.67:8080/](http://18.212.10.67:8080/) (Lists available services)
+- **Nginx Health Check:** [http://18.212.10.67:8080/health](http://18.212.10.67:8080/health)
+
 
 ## AWS Deployment Details
 
@@ -71,7 +82,9 @@ docker-compose up --build
 | **Nginx Root**         | [http://18.212.10.67:8080/](http://18.212.10.67:8080/)                           |
 | **Nginx Health Check** | [http://18.212.10.67:8080/health](http://18.212.10.67:8080/health)               |
 | **Service 1 - Go**     | [http://18.212.10.67:8080/service1/ping](http://18.212.10.67:8080/service1/ping) |
+| **Service 1 - Go**     | [http://18.212.10.67:8080/service1/hello](http://18.212.10.67:8080/service1/hello)|
 | **Service 2 - Python** | [http://18.212.10.67:8080/service2/ping](http://18.212.10.67:8080/service2/ping) |
+| **Service 2 - Python** | [http://18.212.10.67:8080/service2/hello](http://18.212.10.67:8080/service2/hello)|
 
 ## Features
 
@@ -172,9 +185,8 @@ curl http://18.212.10.67:8080/health
 | **Instance Type**  | t2.micro                          |
 | **Security Group** | Port 8080 open for 0.0.0.0/0      |
 
-## 🙏 Author
+## Author
 
 Anurag Chauhan\
-**B.Tech (Information Technology)**\
 Cloud & DevOps Enthusiast
 
