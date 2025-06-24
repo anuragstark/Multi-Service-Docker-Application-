@@ -1,0 +1,31 @@
+FROM golang:1.22-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy source code
+COPY main.go .
+
+# Initialize go module
+RUN go mod init service_1
+
+# Build the application
+RUN go build -o main .
+
+# Final stage
+FROM alpine:latest
+
+# Install wget for health checks
+RUN apk add --no-cache wget
+
+# Set working directory
+WORKDIR /app
+
+# Copy binary from builder stage
+COPY --from=builder /app/main .
+
+# Expose port
+EXPOSE 8001
+
+# Run the application
+CMD ["./main"]
